@@ -1,0 +1,13 @@
+services:
+  notifier:
+    build:
+      context: .
+    volumes:
+      - type: bind
+        source: ./test/test_directory
+        target: /opt/monitor
+      - type: bind
+        source: ./test/scripts
+        target: /opt/owl-corp
+    environment:
+      INOTIFY_HOOK_SCRIPT: /opt/owl-corp/script.sh
