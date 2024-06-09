@@ -17,7 +17,11 @@ else
     fi;
 fi;
 
-ADDITIONAL_ARGS=$(if [[ -n "$WATCH_EVENTS" ]]; then echo "-e $WATCH_EVENTS"; else echo ""; fi)
+if [ -n "$WATCH_EVENTS" ]; then
+  ADDITIONAL_ARGS="-e $WATCH_EVENTS"
+else
+  ADDITIONAL_ARGS=""
+fi
 
 while inotifywait $ADDITIONAL_ARGS -r /opt/monitor; do
     $HOOK_SCRIPT
