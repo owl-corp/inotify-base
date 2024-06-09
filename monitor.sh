@@ -13,8 +13,17 @@ else
         echo "HOOK_SCRIPT is not an executable file (missing +x bit), check file permissions of the hook script."
         exit 1;
     fi;
-fi
+fi;
 
-while inotifywait -r /opt/monitor; do
+ADDITIONAL_ARGS=""
+
+if [ -z ${WATCH_EVENTS+x} ]; then
+    echo "Found watch events"
+    ADDITIONAL_ARGS="-e $WATCH_EVENTS"
+fi;
+
+echo "Final command: inotifywait $ADDITIONAL_ARGS -r /opt/monitor"
+
+while inotifywait $ADDITIONAL_ARGS -r /opt/monitor; do
     $HOOK_SCRIPT
 done;
