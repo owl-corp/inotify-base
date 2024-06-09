@@ -7,6 +7,7 @@ FROM debian:12-slim
 RUN apt-get -y update &&  apt-get install -y \
     curl \
     inotify-tools \
+    jq \
     && apt autoclean \
     && rm -rf /var/lib/apt/lists/*
 
