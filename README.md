@@ -1,7 +1,7 @@
 # inotify-base
 
-A slim image allowing for quick and easy webhooking on configuration/other file
-changes.
+A slim and customisable container image designed for quick and easy script hooks
+on file changes.
 
 This can be used as a sidecar container in Kubernetes/Docker/container based
 applications to trigger certain HTTP webhook/other commands upon a change to a
