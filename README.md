@@ -23,6 +23,16 @@ used by any other aspect of the container, for example, mounting to
 `/opt/owl-corp/` and using `/opt/owl-corp/hook.sh` as your `INOTIFY_HOOK_SCRIPT`
 option.
 
+> [!WARNING] 
+> 
+> By default, `inotifywait` will notify on *all* file events, this includes
+> things like reading directories and opening files.
+>
+> It is highly recommended to refer to the above mentioned [inotifywait
+> manpage][manpage] for the full list of events to narrow down to those which
+> only modify a file in the ways you specifically wish to observe.
+
+
 ## Usage
 
 A Docker compose file using this image might look like the following:
