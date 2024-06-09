@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+set -exo pipefail
+
 if [ -z ${HOOK_SCRIPT+x} ]; then
     echo "Missing HOOK_SCRIPT environment variable, set it to the script to run upon file changes";
     exit 1;
