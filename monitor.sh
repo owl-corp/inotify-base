@@ -15,14 +15,7 @@ else
     fi;
 fi;
 
-ADDITIONAL_ARGS=""
-
-if [ -z ${WATCH_EVENTS+x} ]; then
-    echo "Found watch events"
-    ADDITIONAL_ARGS="-e $WATCH_EVENTS"
-fi;
-
-echo "Final command: inotifywait $ADDITIONAL_ARGS -r /opt/monitor"
+ADDITIONAL_ARGS=$(if [[ -n "$WATCH_EVENTS" ]]; then echo "-e $WATCH_EVENTS"; else echo ""; fi)
 
 while inotifywait $ADDITIONAL_ARGS -r /opt/monitor; do
     $HOOK_SCRIPT
