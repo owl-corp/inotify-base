@@ -1,15 +1,10 @@
-FROM debian:12-slim
+FROM alpine:3.20
 
 # Add inotify-tools for inotifywait
 #
 # We also install curl as scripts using this image often
 # call HTTP webhooks.
-RUN apt-get -y update &&  apt-get install -y \
-    curl \
-    inotify-tools \
-    jq \
-    && apt autoclean \
-    && rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache curl inotify-tools jq
 
 # Set our working directory
 WORKDIR /app
